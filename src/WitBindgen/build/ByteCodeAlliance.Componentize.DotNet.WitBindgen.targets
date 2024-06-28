@@ -7,7 +7,7 @@
         <WasiSdkUrl Condition="$([MSBuild]::IsOSPlatform('Windows'))">https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-$(WasiSdkVersion.Split(".")[0])/wasi-sdk-$(WasiSdkVersion).m-mingw64.tar.gz</WasiSdkUrl>
         <WasiSdkUrl Condition="$([MSBuild]::IsOSPlatform('Linux'))">https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-$(WasiSdkVersion.Split(".")[0])/wasi-sdk-$(WasiSdkVersion)-linux.tar.gz</WasiSdkUrl>
         <WasiSdkUrl Condition="$([MSBuild]::IsOSPlatform('OSX'))">https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-$(WasiSdkVersion.Split(".")[0])/wasi-sdk-$(WasiSdkVersion)-macos.tar.gz</WasiSdkUrl>
-        <WasiSdkRoot>$([System.IO.Path]::Combine("$([System.Environment]::GetFolderPath(SpecialFolder.UserProfile))", ".wasi-sdk", "wasi-sdk-$(WasiSdkVersion)"))</WasiSdkRoot>
+        <WasiSdkRoot>/opt/wasi-sdk-22-cross</WasiSdkRoot>
 
     </PropertyGroup>
 
@@ -44,7 +44,7 @@
     </Target>
 
     <!--
-        Following generats and compiles the wit code for the c# project
+        Following generates and compiles the wit code for the c# project
     -->
     <Target Name="WitCompile_BeforeCsCompile" BeforeTargets="BeforeCompile"
 			Condition="'$(Language)' == 'C#' AND '@(Wit)' != ''"

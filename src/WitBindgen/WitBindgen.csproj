@@ -70,7 +70,7 @@
         <DownloadFile SourceUrl="$(PrebuiltWitBindgenBaseUrl)-%(PrebuiltWitBindgenToolTarget.Identity)%(PrebuiltWitBindgenToolTarget.Ext)" DestinationFolder="tools\temp" DestinationFileName="%(PrebuiltWitBindgenToolTarget.Rid)%(PrebuiltWitBindgenToolTarget.Ext)" />
         <WriteLinesToFile File="$(CurrentWitBindgenVersion)" Lines="$(PrebuiltWitBindgenVersion)" Overwrite="true" WriteOnlyWhenDifferent="true" />
         <MakeDir Directories="tools\%(PrebuiltWitBindgenToolTarget.Rid)" />
-        <Exec Command="tar -xf &quot;temp/%(PrebuiltWitBindgenToolTarget.Rid)%(PrebuiltWitBindgenToolTarget.Ext)&quot; -C %(PrebuiltWitBindgenToolTarget.Rid) --strip-components=1" WorkingDirectory="tools" />
+        <Exec Command="tar -xf &quot;temp/%(PrebuiltWitBindgenToolTarget.Rid)%(PrebuiltWitBindgenToolTarget.Ext)&quot; -C %(PrebuiltWitBindgenToolTarget.Rid) --strip-components=1" WorkingDirectory="tools" Condition="'%(PrebuiltWitBindgenToolTarget.Ext)' == '.tar.gz' or $([MSBuild]::IsOSPlatform('Windows'))"/>
         <RemoveDir Directories="tools\temp" />
     </Target>
 
